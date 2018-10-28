@@ -19,6 +19,7 @@
 #define AM2303_H
 
 #include <Arduino.h>
+#include <stdint.h>
 
 // address of AM2320
 #define AM2320_ADDR 0x5C
@@ -26,6 +27,12 @@
 // maximum number of bytes that can be read consequtively before
 // sensor splits out error
 #define MAX_BYTES_READ 10
+
+enum {
+  ERROR_NONE          = 0x0,
+  ERROR_READ_FAILED   = 0x1,
+  ERROR_BAD_CRC       = 0x2,
+};
 
 class AM2320 {
     public:
@@ -52,7 +59,4 @@ class AM2320 {
 
 };
 
-// compute CRC16
-unsigned int crc16(byte *byte, unsigned int numByte);
-
-#endif
+#endif    /*AM2303_H*/
